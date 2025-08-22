@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
 
+// 登录页面的背景粒子效果
 const ParticlesBackground = () => {
   const particlesInit = useCallback(async (engine) => {
     // console.log("ParticlesBackground", engine);
@@ -21,7 +22,8 @@ const ParticlesBackground = () => {
         background: {
           color: {
             // value: "#606060",  //背景颜色
-            value: "#000000",  //背景颜色
+            // value: "#000000",  //背景颜色
+            value: "#212121",  //背景颜色
           },
         },
         fpsLimit: 120,

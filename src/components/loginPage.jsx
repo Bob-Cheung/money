@@ -4,7 +4,8 @@ import { Paper, Box, TextField, Button, Typography, Alert } from '@mui/material'
 import GitHubIcon from '@mui/icons-material/GitHub';
 import WeiXin from '../icon/weixin_mw.svg'
 import QQ from '../icon/QQ.svg'
-import ParticlesBackground from './particlesBackground'; // 引入粒子背景组件
+import ParticlesBackground from './widget/particlesBackground'; // 引入粒子背景组件
+import './loginPage.css';
 
 const LoginPage = () => {
   const [userEmail, setUserEmail] = useState('');
@@ -14,20 +15,43 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
+    // 验证输入合法性（这里修正了原有的条件判断错误）
+    if (userEmail === "" || password === "") {
+      handleLoadingError(true);
+      return;
+    }
+
     setLoading(true);
+
     setTimeout(() => {
       setLoading(false);
       const userLoginData = JSON.parse(localStorage.getItem('userLoginData'));
-      if (userEmail === userLoginData.userEmail && password === userLoginData.password) {
-        navigate('/home'); // 点击后切换到 Home 页面
+
+      if (userLoginData && userEmail === userLoginData.userEmail && password === userLoginData.password) {
+        // 登录成功，生成模拟Token
+        const token = 'mock-jwt-token-' + Date.now(); // 简单的模拟Token
+
+        // 存储Token和用户信息
+        localStorage.setItem('authToken', token);
+        localStorage.setItem('currentUser', JSON.stringify({
+          email: userEmail,
+          loginTime: new Date().toISOString()
+        }));
+
+        navigate('/home');
       } else {
-        setLoadingError(true);
-        setTimeout(() => {
-          setLoadingError(false);
-        }, 3000);
+        handleLoadingError(true);
       }
-    }, 3000);
+    }, 2000);
   };
+
+
+  const handleLoadingError = () => {
+    setLoadingError(true);
+    setTimeout(() => {
+      setLoadingError(false);
+    }, 2000);
+  }
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
