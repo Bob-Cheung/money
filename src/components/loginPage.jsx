@@ -30,7 +30,6 @@ const LoginPage = () => {
       if (userLoginData && userEmail === userLoginData.userEmail && password === userLoginData.password) {
         // 登录成功，生成模拟Token
         const token = 'mock-jwt-token-' + Date.now(); // 简单的模拟Token
-
         // 存储Token和用户信息
         localStorage.setItem('authToken', token);
         localStorage.setItem('currentUser', JSON.stringify({
@@ -67,8 +66,10 @@ const LoginPage = () => {
     const userLoginData = localStorage.getItem('userLoginData');
     if (!userLoginData) {
       const data = {
-        userEmail: 'admin',
+        userEmail: '1234@qq.com',
+        userName: '张亮',
         password: '123',
+        loginTime: new Date().toISOString()
       };
       localStorage.setItem('userLoginData', JSON.stringify(data)); // 确保数据是字符串格式
     }

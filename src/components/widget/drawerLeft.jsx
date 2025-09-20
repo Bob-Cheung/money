@@ -28,6 +28,8 @@ import avatarImage from '../../icon/touxiang.jpg';
 import Snackbars from './snackbars';
 import Geren from './geren';
 import Qita from './qita';
+import AlertDialog from './dialog';
+import PersonalInformation from './personalInformation';
 
 const drawerWidth = 240;
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -93,12 +95,22 @@ const PersistentDrawerLeft = () => {
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
   const [snackbarShow, setSnackbarShow] = useState(false);
   const [snackbarAnchorOrigin, setSnackbarAnchorOrigin] = useState({ vertical: "top", horizontal: "right" });
+  const [alertDialogShow, setAlertDialogShow] = useState(false);
+  // 用户信息
+  const [userName, setUserName] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [avatar, setAvatar] = useState(null);
 
   const navigate = useNavigate();
 
+  const handleSaveAvatar = (data) => {
+    setAvatar(data);
+  }
+
   const handlePersonalInfo = () => {
-    handleCloseUserMenu(); // 关闭菜单
     console.log('个人信息');
+    handleCloseUserMenu(); // 关闭菜单
+    handleAlertDialog();
   };
 
   const handleLogout = () => {
@@ -141,13 +153,44 @@ const PersistentDrawerLeft = () => {
 
 
   useEffect(() => {
+    console.log("登录成功了！！！！！");
     showSnackBar("success", `账号登录成功!`);
     const currentUserData = JSON.parse(localStorage.getItem('currentUser'));
     const authToken = localStorage.getItem('authToken');
+    const userLoginData = JSON.parse(localStorage.getItem('userLoginData'));
     if (!currentUserData || !authToken) {
       navigate('/login');
-    }
+    };
+    if (userLoginData) {
+      if (userLoginData.avatar) {
+        setAvatar(userLoginData.avatar);
+      }
+      setPassword(userLoginData.password);
+      setUserName(userLoginData.userName);
+    };
   }, []);
+
+  useEffect(() => {
+    // 定义事件处理函数
+    const handleBeforeUnload = (event) => {
+      // 取消事件（遵循标准）
+      event.preventDefault();
+      // 为了兼容旧版浏览器，需要设置returnValue
+      event.returnValue = '';
+      // 可以在这里执行一些同步操作，但注意不能是异步的
+      // 例如，可以尝试将数据保存到localStorage
+      // localStorage.setItem('unsavedData', '一些需要保存的数据');
+      console.log("页面即将刷新或关闭");
+    };
+
+    // 添加事件监听
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    // 清理函数：在组件卸载时移除事件监听
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []); // 空依赖数组表示这个effect只运行一次（在组件挂载和卸载时）
 
   const handleDrawerOpen = () => {
     setOpen(!open);
@@ -180,6 +223,33 @@ const PersistentDrawerLeft = () => {
     setSnackbarText("");
   };
 
+  const handleAlertDialog = () => {
+    setAlertDialogShow(!alertDialogShow);
+  }
+
+  const handleNameChange = (e) => {
+    console.log(e.target.value);
+    setUserName(e.target.value);
+  }
+
+  const handlePasswordChange = (e) => {
+    console.log(e.target.value);
+    setPassword(e.target.value);
+  }
+
+  const alertDialogConfirm = () => {
+    console.log("确认");
+    setAlertDialogShow();
+    const userLoginData = JSON.parse(localStorage.getItem('userLoginData'));
+    if (userLoginData) {
+      userLoginData.userName = userName;
+      userLoginData.password = password;
+      userLoginData.avatar = avatar;
+      userLoginData.loginTime = new Date().toISOString()
+    }
+    localStorage.setItem('userLoginData', JSON.stringify(userLoginData));
+  }
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -200,11 +270,16 @@ const PersistentDrawerLeft = () => {
           </Typography>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar src={avatarImage} />
-              </IconButton>
-            </Tooltip>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Typography variant="h6" sx={{ paddingRight: "10px" }}>
+                {userName}
+              </Typography>
+              <Tooltip title="设置" >
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar src={avatar || avatarImage} />
+                </IconButton>
+              </Tooltip>
+            </Box>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -282,6 +357,25 @@ const PersistentDrawerLeft = () => {
         text={snackbarText}
         severity={snackbarSeverity}
         handleClose={handleSnackbarClose}
+      />
+
+      <AlertDialog
+        showSnackBar={showSnackBar}
+        open={alertDialogShow}
+        title={"个人信息"}
+
+        children={
+          <PersonalInformation
+            userName={userName}
+            password={password}
+            onNameChange={handleNameChange}
+            onPasswordChange={handlePasswordChange}
+            showSnackBar={showSnackBar}
+            onSaveAvatar={handleSaveAvatar}
+            avatar={avatar || avatarImage}
+          />}
+        handleClose={handleAlertDialog}
+        confirm={alertDialogConfirm}
       />
     </Box>
   );
