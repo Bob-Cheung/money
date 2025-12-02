@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/money/static/css/main.2c7bb2d6.css",
+    "main.js": "/money/static/js/main.eaf83afa.js",
+    "static/media/touxiang.jpg": "/money/static/media/touxiang.9cb223b4278d28e0665e.jpg",
+    "static/media/weixin_mw.svg": "/money/static/media/weixin_mw.8b1b0439e1c0ba0a75ab8c5904fa0eff.svg",
+    "static/media/QQ.svg": "/money/static/media/QQ.1d5f2d525751cbf76235c8d737fe422a.svg",
+    "index.html": "/money/index.html",
+    "main.2c7bb2d6.css.map": "/money/static/css/main.2c7bb2d6.css.map",
+    "main.eaf83afa.js.map": "/money/static/js/main.eaf83afa.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2c7bb2d6.css",
+    "static/js/main.eaf83afa.js"
+  ]
+}
