@@ -1,6 +1,8 @@
 ### money 项目
 
-一款专注于[可补充项目核心功能，如：音频提取]的前端应用，简洁易用，支持通过 GitHub Pages 快速部署上线。
+暂时没有任何功能，没有服务器，没有数据库，只是一个静态页面，只有登录页面，其它功能还未开发....
+演示地址：https://bob-cheung.github.io/money/
+账号密码：1234@qq.com / 123
 
 ### 📋 目录
 
@@ -17,7 +19,7 @@
 
 这里可补充项目的详细介绍，例如：
 
-- 核心功能：[如：音频提取] 还未做
+- 核心功能：[如：音频提取] 还未完善
 
 - 设计理念：[如：极简界面、高效操作]
 
@@ -70,16 +72,15 @@ npm install
   ```
 
 5. 自动部署到 GitHub Pages
-        npm run deploy注意：手动创建 gh-pages 分支，部署命令会自动创建空分支并上传静态文件。
+npm run deploy ⚠️注意：手动创建 gh-pages 分支，部署命令会自动创建空分支并上传静态文件。
 
-6. GitHub 仓库配置
-        打开仓库：bob-cheung/money
+1. GitHub 仓库配置：打开仓库：bob-cheung/money
 
-7. 进入「Settings」→ 下滑找到「GitHub Pages」
+1. 进入「Settings」→ 下滑找到「GitHub Pages」
 
-8. 「Source」选择「gh-pages」分支，目录默认「/(root)」
+2. 「Source」选择「gh-pages」分支，目录默认「/(root)」
 
-9. 点击「Save」，等待 1-2 分钟生效
+3. 点击「Save」，等待 1-2 分钟生效
 
 访问已部署网站
 🎉 部署成功后，访问：https://bob-cheung.github.io/money/
@@ -97,7 +98,7 @@ npm install
 
 - ``npm run deploy ``执行报错「gh-pages 命令未找到」需手动安装部署依赖：``npm install gh-pages --save-dev``
 
-- 访问部署地址出现 404 检查 ``gh-pages`` 分支是否存在，且根目录有 ``index.html` 文件
+- 访问部署地址出现 404 检查 ``gh-pages`` 分支是否存在，且根目录有 ``index.html`` 文件
 
 📄 许可证
 
