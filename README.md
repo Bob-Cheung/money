@@ -1,70 +1,105 @@
-# Getting Started with Create React App
+### 说明
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- ⚠️⚠️⚠️无聊打发时间做玩的，暂时没有任何功能，没有服务器，没有数据库，只是一个静态页面，只有登录页面，其它功能还未开发....
+- 演示地址：https://bob-cheung.github.io/money/
+- 账号密码：`1234@qq.com `/ `123`
 
-## Available Scripts
+### 📋 目录
 
-In the project directory, you can run:
+- [说明](#说明)
+- [📋 目录](#-目录)
+- [🔍 项目简介](#-项目简介)
+- [🚀 快速开始](#-快速开始)
+- [本地运行步骤](#本地运行步骤)
+- [📦 部署指南](#-部署指南)
+- [更新部署](#更新部署)
+- [❓ 常见问题](#-常见问题)
 
-### `npm start`
+### 🔍 项目简介
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+这里可补充项目的详细介绍，例如：
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 核心功能：[如：音频提取] 还未完善
 
-### `npm test`
+- 设计理念：[如：极简界面、高效操作]
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 技术特点：[如：响应式布局、本地数据存储]
 
-### `npm run build`
+### 🚀 快速开始
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+环境要求
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Node.js ≥ 14.x
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- npm ≥ 6.x 或 yarn ≥ 1.22.x
+### 本地运行步骤
 
-### `npm run eject`
+1. 克隆仓库到本地
+```bash
+git clone https://github.com/bob-cheung/money.git
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. 安装项目依赖
+```bash
+npm install
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. 访问本地服务：打开浏览器输入 http://localhost:3000（端口号以实际终端输出为准）
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 📦 部署指南
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+将项目部署到 GitHub Pages，实现免费静态网站上线：
 
-## Learn More
+1. 确保本地已完成项目配置，且代码已提交
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. 安装部署依赖（若未安装
+```bash
+   npm install gh-pages --save-dev
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. 配置 package.json 部署脚本
+```bash
+"homepage": "https://bob-cheung.github.io/money/",
+  "scripts": {
+  "build": "你的打包命令",  // 如：vite build / react-scripts build
+  "deploy": "gh-pages -d dist"  // dist 为打包输出目录，React 项目替换为 build
+}
+```
 
-### Code Splitting
+4. 生成静态文件
+  ```bash
+  npm run build
+  ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+5. 自动部署到 GitHub Pages
+npm run deploy ⚠️注意：手动创建 gh-pages 分支，部署命令会自动创建空分支并上传静态文件。
 
-### Analyzing the Bundle Size
+1. GitHub 仓库配置：打开仓库：bob-cheung/money
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. 进入「Settings」→ 下滑找到「GitHub Pages」
 
-### Making a Progressive Web App
+2. 「Source」选择「gh-pages」分支，目录默认「/(root)」
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+3. 点击「Save」，等待 1-2 分钟生效
 
-### Advanced Configuration
+访问已部署网站
+🎉 部署成功后，访问：https://bob-cheung.github.io/money/
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 更新部署
 
-### Deployment
+后续代码更新后，重复以下命令即可重新部署：
+```bash
+  npm run build
+  npm run deploy
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+### ❓ 常见问题
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- ``npm run deploy ``执行报错「gh-pages 命令未找到」需手动安装部署依赖：``npm install gh-pages --save-dev``
+
+- 访问部署地址出现 404 检查 ``gh-pages`` 分支是否存在，且根目录有 ``index.html`` 文件
+
+📄 许可证
+
+啦啦啦啦啦啦啦啦啦啦

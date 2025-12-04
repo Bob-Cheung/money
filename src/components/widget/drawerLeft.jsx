@@ -345,7 +345,7 @@ const PersistentDrawerLeft = () => {
         <Divider />
       </Drawer>
 
-      <Main open={open}>
+      <Main open={open} sx={{ width: '100%', height: '100vh' }}>
         <DrawerHeader />
         {/* 从导航配置中找到当前激活的组件并渲染 */}
         {navItems.find(item => item.key === activeKey)?.component}
