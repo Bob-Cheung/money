@@ -59,7 +59,7 @@ npm install
 
 3. 配置 package.json 部署脚本
 ```bash
-"homepage": "https://bob-cheung.github.io/money/",
+"homepage": "https://bob-cheung.github.io/money/",  // 修改为你的 GitHub 仓库地址
   "scripts": {
   "build": "你的打包命令",  // 如：vite build / react-scripts build
   "deploy": "gh-pages -d dist"  // dist 为打包输出目录，React 项目替换为 build
@@ -74,16 +74,16 @@ npm install
 5. 自动部署到 GitHub Pages
 npm run deploy ⚠️注意：手动创建 gh-pages 分支，部署命令会自动创建空分支并上传静态文件。
 
-1. GitHub 仓库配置：打开仓库：bob-cheung/money
+6. GitHub 仓库配置：打开仓库：bob-cheung/money // 修改为你的 GitHub 仓库地址
 
-1. 进入「Settings」→ 下滑找到「GitHub Pages」
+7. 进入「Settings」→ 下滑找到「GitHub Pages」
 
-2. 「Source」选择「gh-pages」分支，目录默认「/(root)」
+8. 「Source」选择「gh-pages」分支，目录默认「/(root)」
 
-3. 点击「Save」，等待 1-2 分钟生效
+9. 点击「Save」，等待 1-2 分钟生效
 
 访问已部署网站
-🎉 部署成功后，访问：https://bob-cheung.github.io/money/
+🎉 部署成功后，访问：https://bob-cheung.github.io/money/  // 修改为你的 GitHub 仓库地址
 
 ### 更新部署
 
