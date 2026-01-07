@@ -52,7 +52,7 @@ npm install
 
 1. 确保本地已完成项目配置，且代码已提交
 
-2. 安装部署依赖（若未安装
+2. 安装部署依赖
 ```bash
    npm install gh-pages --save-dev
 ```
@@ -60,7 +60,7 @@ npm install
 3. 配置 package.json 部署脚本
 ```bash
 "homepage": "https://bob-cheung.github.io/money/",  // 修改为你的 GitHub 仓库地址
-  "scripts": {
+"scripts": {
   "build": "你的打包命令",  // 如：vite build / react-scripts build
   "deploy": "gh-pages -d dist"  // dist 为打包输出目录，React 项目替换为 build
 }
