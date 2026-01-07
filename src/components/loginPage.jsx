@@ -17,12 +17,11 @@ const LoginPage = () => {
   const handleLogin = () => {
     // 验证输入合法性（这里修正了原有的条件判断错误）
     if (userEmail === "" || password === "") {
-      handleLoadingError(true);
+      handleLoadingError();
       return;
-    }
+    };
 
     setLoading(true);
-
     setTimeout(() => {
       setLoading(false);
       const userLoginData = JSON.parse(localStorage.getItem('userLoginData'));
@@ -44,7 +43,6 @@ const LoginPage = () => {
     }, 2000);
   };
 
-
   const handleLoadingError = () => {
     setLoadingError(true);
     setTimeout(() => {
@@ -55,7 +53,7 @@ const LoginPage = () => {
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       handleLogin(); // 按下回车键时调用登录函数
-    }
+    };
   };
 
   // const handleGitHubLogin = () => {
@@ -75,9 +73,18 @@ const LoginPage = () => {
     }
   }, []);
 
+  const handleRegister = () => {
+    navigate('/register');
+  };
+
+  const handlePasswordReset = () => {
+    navigate('/passwordRecovery');
+  };
+
   return (
     <>
-      <ParticlesBackground /> {/* 使用粒子背景组件 */}
+      {/* 使用粒子背景组件 */}
+      <ParticlesBackground />
       <Paper
         elevation={24}
         sx={{
@@ -86,7 +93,6 @@ const LoginPage = () => {
           left: '50%',
           transform: 'translate(-50%, -50%)',
           width: 400,
-          // height: 450,
           backgroundColor: 'rgb(245, 246, 250)',
           display: 'flex',
           flexDirection: 'column',
@@ -94,23 +100,23 @@ const LoginPage = () => {
         }}
       >
         <Box sx={{ width: '80%', paddingTop: 5 }}>
-          <Box sx={{ paddingBottom: 2 }}>
-            <Typography variant="h5" sx={{ paddingBottom: 2, textAlign: 'center' }}>Sign in</Typography>
-            <Typography variant="h8" sx={{ textAlign: 'center' }}>Welcome user, please sign in to continue</Typography>
+          <Box sx={{ display: 'flex', flexDirection: 'column', paddingBottom: 2 }}>
+            <Typography variant="h5" sx={{ paddingBottom: 2, textAlign: 'center' }}>登录</Typography>
+            <Typography variant="h8" sx={{ textAlign: 'center' }}>欢迎用户，请登录继续</Typography>
           </Box>
-          <Typography sx={{ fontSize: 12, paddingBottom: 1, }}>Emaix*</Typography>
+          <Typography sx={{ fontSize: 12, paddingBottom: 1, }}>邮箱*</Typography>
           <TextField
-            // label="Email"
             size="small"
+            placeholder={'请输入邮箱'}
             value={userEmail}
             onChange={(e) => setUserEmail(e.target.value)}
             sx={{ width: '100%', paddingBottom: 2 }}
           />
-          <Typography sx={{ fontSize: 12, paddingBottom: 1, }}>Password*</Typography>
+          <Typography sx={{ fontSize: 12, paddingBottom: 1, }}>密码*</Typography>
           <TextField
-            // label="Password"
             type="password"
             size="small"
+            placeholder={'请输入密码'}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="current-password"
@@ -123,8 +129,12 @@ const LoginPage = () => {
               <Alert severity="error">账户或密码错误.</Alert>
             </Box>
           }
-          <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', paddingTop: 3, }}>
-            <Button sx={{ width: '100%' }} loading={loading} variant="contained" onClick={handleLogin}>登录/注册</Button>
+          <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', paddingTop: 3, flexDirection: 'column', }}>
+            <Button sx={{ width: '100%' }} loading={loading} variant="contained" onClick={handleLogin}>登录</Button>
+            <Box sx={{ paddingTop: 1, display: 'flex', justifyContent: 'space-between' }}>
+              <Typography sx={{ fontSize: 12, color: '#1976d2', cursor: 'pointer' }} onClick={handlePasswordReset}>忘记密码?</Typography>
+              <Typography sx={{ fontSize: 12, color: '#1976d2', cursor: 'pointer' }} onClick={handleRegister}>去注册</Typography>
+            </Box>
           </Box>
         </Box>
         <Box sx={{ paddingTop: 2, paddingBottom: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -135,7 +145,6 @@ const LoginPage = () => {
             <img style={{ width: "24px", marginLeft: "10px", cursor: 'grabbing' }} src={QQ} />
           </Box>
         </Box>
-
       </Paper>
     </>
   );

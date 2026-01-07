@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ListItem,
   ListItemText,
@@ -11,8 +11,14 @@ import {
   Box,
   Button,
   ListItemAvatar,
-  Avatar
+  Avatar,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
 } from '@mui/material';
+
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
@@ -120,9 +126,60 @@ const PasswordText = (props) => {
   );
 }
 
+// 普通的ListItem
+const TextNormal = (props) => {
+  return (
+    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <TextField
+        label={props.label}
+        placeholder={props.placeholder}
+        error={props.error}
+        size={props.size || 'small'}
+        value={props.value}
+        onChange={props.onChange}
+        sx={props.sx}
+        helperText={props.helperText}
+      >
+      </TextField>
+      {props.children}
+    </Box>
+  );
+}
+
+// 对话框
+const DialogBox = (props) => {
+  return (
+    <Dialog
+      open={props.open}
+      onClose={props.handleClose}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <DialogTitle id="alert-dialog-title">
+        {props.title}
+      </DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+          {props.description}
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        {
+          props.handleConfirmed && <Button onClick={props.handleConfirmed}>确定</Button>
+        }
+        {
+          props.handleCancel && <Button onClick={props.handleCancel}>取消</Button>
+        }
+      </DialogActions>
+    </Dialog>
+  );
+}
+
 export {
   SwitchItem,
   TextItem,
   PasswordText,
-  IconButtonItem
+  IconButtonItem,
+  TextNormal,
+  DialogBox
 };
