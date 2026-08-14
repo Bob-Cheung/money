@@ -1,3 +1,16 @@
+<p align="center">
+  <h1 align="center">个人工具集合项目</h1>
+  <p align="center">一个用来私人使用的网站，用于积累项目经验的</p>
+</p>
+
+<p align="center">
+  <a href="https://bob-cheung.github.io/money/"><strong>🌐 在线使用</strong></a> ·
+  <a href="#快速开始"><strong>📦 本地运行</strong></a> ·
+  <a href="#部署到-github-pages"><strong>🚀 部署</strong></a>
+</p>
+
+---
+
 ### 说明
 
 - ⚠️⚠️⚠️无聊打发时间做玩的，暂时没有任何功能，没有服务器，没有数据库，只是一个静态页面，只有登录页面，其它功能还未开发....
@@ -102,4 +115,4 @@ npm run deploy ⚠️注意：手动创建 gh-pages 分支，部署命令会自�
 
 📄 许可证
 
-啦啦啦啦啦啦啦啦啦啦
+[MIT](LICENSE)
