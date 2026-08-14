@@ -5,8 +5,8 @@
 
 <p align="center">
   <a href="https://bob-cheung.github.io/money/"><strong>🌐 在线使用</strong></a> ·
-  <a href="#快速开始"><strong>📦 本地运行</strong></a> ·
-  <a href="#部署指南"><strong>🚀 部署</strong></a>
+  <a href="#-快速开始"><strong>📦 本地运行</strong></a> ·
+  <a href="#-部署指南"><strong>🚀 部署</strong></a>
 </p>
 
 ---
